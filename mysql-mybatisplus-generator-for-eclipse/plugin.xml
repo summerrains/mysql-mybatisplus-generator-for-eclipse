@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="MySQL MybatisPlus Generator for Eclipse"
+            id="mysql-mybatisplus-generator-for-eclipse.commands.category">
+      </category>
+      <command
+            name="MySQL MybatisPlus Generator for Eclipse"
+            categoryId="mysql-mybatisplus-generator-for-eclipse.commands.category"
+            id="mysql-mybatisplus-generator-for-eclipse.commands.sampleCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="mysql-mybatisplus-generator-for-eclipse.commands.sampleCommand"
+            class="net.summerrains.plugins.handlers.MybatisHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="mysql-mybatisplus-generator-for-eclipse.commands.sampleCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="mysql-mybatisplus-generator-for-eclipse.toolbars.sampleToolbar">
+            <command
+                  commandId="mysql-mybatisplus-generator-for-eclipse.commands.sampleCommand"
+                  icon="icons/sample.gif"
+                  tooltip="MySQL MybatisPlus Generator for Eclipse"
+                  id="mysql-mybatisplus-generator-for-eclipse.toolbars.sampleCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.jdt.core.IJavaProject"
+            id="mysql-mybatisplus-generator-for-eclipse.contribution1">
+         <menu
+               label="MySQL MybatisPlus Generator"
+               path="additions"
+               id="mysql-mybatisplus-generator-for-eclipse.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Generator from ConfigDialog"
+               class="net.summerrains.plugins.actions.ConfigAction"
+               menubarPath="mysql-mybatisplus-generator-for-eclipse.menu1/group1"
+               enablesFor="1"
+               id="mysql-mybatisplus-generator-for-eclipse.ConfigAction">
+         </action>
+         <action
+               label="Generator from TableDialog"
+               class="net.summerrains.plugins.actions.TableAction"
+               menubarPath="mysql-mybatisplus-generator-for-eclipse.menu1/group1"
+               enablesFor="1"
+               id="mysql-mybatisplus-generator-for-eclipse.TableAction">
+         </action>
+      </objectContribution>
+   </extension>
+</plugin>

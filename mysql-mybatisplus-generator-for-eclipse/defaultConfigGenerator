@@ -1,0 +1,13 @@
+#defaut config generator infomation
+#Tue Mar 28 15:23:12 CST 2017
+packageName=com.yourcompany.db
+tablePrefix=true
+driverName=com.mysql.jdbc.Driver
+port=3306
+columnPrefix=true
+user=root
+saveDir=./generator
+fieldPrefix=true
+database=hna-unifiedpay
+password=
+host=127.0.0.1

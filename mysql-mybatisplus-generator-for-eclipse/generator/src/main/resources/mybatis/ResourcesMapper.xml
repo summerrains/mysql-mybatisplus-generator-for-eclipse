@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- table:sys_resources date:2017-03-28 15:23:21 comment:资源表 -->
+<!-- namespace必须指向com.yourcompany.db.mapper包下的Mapper接口 -->
+<mapper namespace="com.yourcompany.db.mapper.ResourcesMapper">
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">sys_resources.res_id as id,sys_resources.res_create_date as createDate,sys_resources.res_update_date as updateDate,sys_resources.res_is_delete as isDelete,sys_resources.res_name as name,sys_resources.res_parent as parent,sys_resources.res_url as url,sys_resources.res_sort as sort </sql>
+	
+	
+</mapper> 
