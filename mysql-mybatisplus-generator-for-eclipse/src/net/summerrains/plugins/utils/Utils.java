@@ -34,10 +34,29 @@ import net.summerrains.plugins.DefaultConfigGenerator;
 
 public final class Utils {
 	
+	private static final String DIR = System.getProperty("user.home") + "/.eclipse/net.summerrains.plugins/";
+	static {
+		mkdir();
+	}
+	
 	public static void showMessageBox(Shell shell,String message,int style) {
 		MessageBox mb = new MessageBox(shell,style);
 		mb.setMessage(message);
 		mb.open();
+	}
+	
+	private static void mkdir() {
+		try {
+			File file = new File(System.getProperty("user.home") + "/.eclipse");
+			if(!file.exists()) {
+				file.mkdir();
+			}
+			file = new File(System.getProperty("user.home") + "/.eclipse/net.summerrains.plugins");
+			if(!file.exists()) {
+				file.mkdir();
+			}
+		} catch(Exception e) {
+		}
 	}
 
 	public static String throwableToString(Throwable throwable) {
@@ -60,7 +79,7 @@ public final class Utils {
 		FileOutputStream fout = null;
 		try {
 			Properties properties = new Properties();  
-			fout = new FileOutputStream("defaultConfigGenerator");
+			fout = new FileOutputStream(DIR + "defaultConfigGenerator");
 			properties.setProperty("driverName", defaultConfigGenerator.getDbDriverName());
 			properties.setProperty("host", defaultConfigGenerator.getHost());
 			properties.setProperty("port", defaultConfigGenerator.getPort());
@@ -91,7 +110,7 @@ public final class Utils {
 		DefaultConfigGenerator defaultConfigGenerator = null;
 		FileInputStream fin = null;
 		try {
-			fin = new FileInputStream("defaultConfigGenerator");
+			fin = new FileInputStream(DIR + "defaultConfigGenerator");
 			Properties properties = new Properties();  
 	        properties.load(fin);  
 	        fin.close();
@@ -165,14 +184,11 @@ public final class Utils {
 			TransformerFactory tFactory =TransformerFactory.newInstance();
 			Transformer transformer = tFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new java.io.File("defaultTemplete"));
+			StreamResult result = new StreamResult(new java.io.File(DIR + "defaultTemplete"));
 			transformer.transform(source, result); 
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
 		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
 		} catch (TransformerException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -181,7 +197,7 @@ public final class Utils {
 		DocumentBuilder builder = null;
 		try {
 			builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(new File("defaultTemplete")); 
+			Document doc = builder.parse(new File(DIR + "defaultTemplete")); 
 			doc.normalize(); 
 			NodeList nodeList = doc.getElementsByTagName("templete");
 			int length = nodeList.getLength();
@@ -212,11 +228,8 @@ public final class Utils {
 				}
 			}
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
 		} catch (SAXException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return defaultConfigGenerator;
 	}
